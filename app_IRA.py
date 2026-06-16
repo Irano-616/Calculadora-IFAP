@@ -27,14 +27,14 @@ for i in range(6):
     with col_nota:
         nota = st.number_input("", min_value=0.0, max_value=100.0, value=0.0, step=10.0, key=f"n_{i}", label_visibility="collapsed")
     with col_cred:
-        cred = st.number_input("", min_value=0, max_value=10, value=0, key=f"c_{i}", label_visibility="collapsed")
+        hor = st.number_input("", min_value=0, max_value=10, value=0, key=f"c_{i}", label_visibility="collapsed")
         
-    soma_pontos += nota * cred
-    soma_creditos += cred
+    soma_pontos += nota * hor
+    soma_horas += hor
 
 # Exibe o resultado final
 if soma_creditos > 0:
-    ira = soma_pontos / soma_creditos
+    ira = soma_pontos / soma_horas
     st.write(f"### Seu IRA: {ira:.2f}")
 else:
     st.write("Selecione as matérias e digite as notas e créditos acima.")
