@@ -14,7 +14,7 @@ soma_horas = 0  # Corrigido: Padronizado para rastrear a carga horária total
 # Cabeçalho das colunas
 c1, c2, c3 = st.columns([2, 1, 1]) # O primeiro número (2) deixa a coluna do nome mais larga
 c1.write("**Matérias**")
-c2.write("**Nota (0 a 100)**")
+c2.write("**Nota (0 a 10)**")
 c3.write("**Carga Horária (Horas)**")
 
 # Loop para gerar as 6 linhas de matérias
