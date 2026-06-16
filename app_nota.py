@@ -5,8 +5,8 @@ st.header("Coloque sua média nas respectivas caixas de texto")
 
 st.space() # O espaço entre o st.header e as variaveis n1 e n2
 
-n1 = st.number_input("Coloque a sua nota N1: ", step=10.0) 
-n2 = st.number_input("Coloque a sua nota N2: ", step=10.0)
+n1 = st.number_input("Coloque a sua nota N1: ", step=10.0, min_value=0.0, max_value=100.0) 
+n2 = st.number_input("Coloque a sua nota N2: ", step=10.0, min_value=0.0, max_value=100.0)
 
 media = ((n1+n2)/2)/10
 
