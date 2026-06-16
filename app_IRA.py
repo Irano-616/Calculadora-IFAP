@@ -15,7 +15,7 @@ soma_creditos = 0
 c1, c2, c3 = st.columns([2, 1, 1]) # O primeiro número (2) deixa a coluna do nome mais larga
 c1.write("**Matéria**")
 c2.write("**Nota**")
-c3.write("**Créditos**")
+c3.write("**Carga Horária**")
 
 # Loop para gerar as 6 linhas de matérias
 for i in range(6):
