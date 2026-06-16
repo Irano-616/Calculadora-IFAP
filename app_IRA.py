@@ -17,8 +17,8 @@ c1.write("**Matéria**")
 c2.write("**Nota**")
 c3.write("**Créditos**")
 
-# Loop para gerar as 5 linhas de matérias
-for i in range(5):
+# Loop para gerar as 6 linhas de matérias
+for i in range(6):
     col_nome, col_nota, col_cred = st.columns([2, 1, 1])
     
     with col_nome:
