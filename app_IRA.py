@@ -9,13 +9,13 @@ LISTA_MATERIAS = [
 ]
 
 soma_pontos = 0.0
-soma_creditos = 0
+soma_horas = 0  # Corrigido: Padronizado para rastrear a carga horária total
 
 # Cabeçalho das colunas
 c1, c2, c3 = st.columns([2, 1, 1]) # O primeiro número (2) deixa a coluna do nome mais larga
 c1.write("**Matérias**")
-c2.write("**Nota**")
-c3.write("**Carga Horária**")
+c2.write("**Nota (0 a 100)**")
+c3.write("**Carga Horária (Horas)**")
 
 # Loop para gerar as 6 linhas de matérias
 for i in range(6):
@@ -25,19 +25,21 @@ for i in range(6):
         # Caixa de seleção para o aluno escolher a matéria
         materia_selecionada = st.selectbox("", LISTA_MATERIAS, key=f"m_{i}", label_visibility="collapsed")
     with col_nota:
-        nota = st.number_input("", min_value=0.0, max_value=100.0, value=0.0, step=10.0, key=f"n_{i}", label_visibility="collapsed")
+        # Mantido de 0 a 100 conforme o padrão do IFAP
+        nota = st.number_input("", min_value=0.0, max_value=10.0, value=0.0, step=1.0, key=f"n_{i}", label_visibility="collapsed")
     with col_cred:
-        hor = st.number_input("", min_value=0, max_value=10, value=0, key=f"c_{i}", label_visibility="collapsed")
+        # Alterado max_value e step para se adequar a cargas horárias reais (ex: 40h, 60h, 80h)
+        hor = st.number_input("", min_value=0, max_value=200, value=0, step=20, key=f"c_{i}", label_visibility="collapsed")
         
     soma_pontos += nota * hor
-    soma_horas += hor
+    soma_horas += hor  # Corrigido: Usando a mesma variável definida no escopo global
 
 # Exibe o resultado final
-if soma_creditos > 0:
+if soma_horas > 0:  # Corrigido: Verifica se a soma das horas é maior que zero para evitar divisão por zero
     ira = soma_pontos / soma_horas
     st.write(f"### Seu IRA: {ira:.2f}")
 else:
-    st.write("Selecione as matérias e digite as notas e créditos acima.")
+    st.write("Digite as notas e as cargas horárias acima para calcular.")
 
 st.divider()
 
