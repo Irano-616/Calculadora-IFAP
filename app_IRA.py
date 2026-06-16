@@ -4,7 +4,7 @@ st.title("Calculadora de IRA")
 
 # Lista de matérias comuns (você pode alterar ou adicionar mais nomes aqui)
 LISTA_MATERIAS = [
-    "Selecionar...", "Inglês Instrumental", "", "Lógica Matemática", "Inovação Tecnológica", 
+    "Selecionar...", "Inglês Instrumental", "Lógica Matemática", "Inovação Tecnológica", 
     "Introdução a Inteligência Artificial", "Logica de Programação em IA", "Comunicação Científica e Metodologia", "Outra"
 ]
 
