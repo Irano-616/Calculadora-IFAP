@@ -7,11 +7,11 @@ st.space() # O espaço entre o st.header e as variaveis n1 e n2
 
 st.markdown(
     """ 
-    <style>
+    </style>
     div[data-testid = "stNumberInputStepDown"], div[data-testid = "stNumberInputStepUp"] {
     display: none !important;
     }
-    <style>
+    </style>
     """,
     unsafe_allow_html = True
 )
