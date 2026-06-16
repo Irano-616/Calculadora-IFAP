@@ -4,9 +4,8 @@ st.title("Calculadora de IRA")
 
 # Lista de matérias comuns (você pode alterar ou adicionar mais nomes aqui)
 LISTA_MATERIAS = [
-    "Selecionar...", "Matemática", "Cálculo I", "Cálculo II", "Física I", 
-    "Física II", "Química", "Programação", "Álgebra Linear", 
-    "Geometria Analítica", "Algoritmos", "Estrutura de Dados", "Outra"
+    "Selecionar...", "Inglês Instrumental", "", "Lógica Matemática", "Inovação Tecnológica", 
+    "Introdução a Inteligência Artificial", "Logica de Programação em IA", "Comunicação Científica e Metodologia", "Outra"
 ]
 
 soma_pontos = 0.0
@@ -26,7 +25,7 @@ for i in range(5):
         # Caixa de seleção para o aluno escolher a matéria
         materia_selecionada = st.selectbox("", LISTA_MATERIAS, key=f"m_{i}", label_visibility="collapsed")
     with col_nota:
-        nota = st.number_input("", min_value=0.0, max_value=10.0, value=0.0, key=f"n_{i}", label_visibility="collapsed")
+        nota = st.number_input("", min_value=0.0, max_value=100.0, value=0.0, step=10, key=f"n_{i}", label_visibility="collapsed")
     with col_cred:
         cred = st.number_input("", min_value=0, value=0, key=f"c_{i}", label_visibility="collapsed")
         
