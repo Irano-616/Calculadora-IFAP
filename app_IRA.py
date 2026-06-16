@@ -13,7 +13,7 @@ soma_creditos = 0
 
 # Cabeçalho das colunas
 c1, c2, c3 = st.columns([2, 1, 1]) # O primeiro número (2) deixa a coluna do nome mais larga
-c1.write("**Matéria**")
+c1.write("**Matéra**")
 c2.write("**Nota**")
 c3.write("**Carga Horária**")
 
