@@ -25,7 +25,7 @@ for i in range(5):
         # Caixa de seleção para o aluno escolher a matéria
         materia_selecionada = st.selectbox("", LISTA_MATERIAS, key=f"m_{i}", label_visibility="collapsed")
     with col_nota:
-        nota = st.number_input("", min_value=0.0, max_value=100.0, value=0.0, step=10, key=f"n_{i}", label_visibility="collapsed")
+        nota = st.number_input("", min_value=0.0, max_value=100.0, value=0.0, step=10.0, key=f"n_{i}", label_visibility="collapsed")
     with col_cred:
         cred = st.number_input("", min_value=0, value=0, key=f"c_{i}", label_visibility="collapsed")
         
