@@ -11,7 +11,7 @@ LISTA_MATERIAS = [
     "Outra"
 ]
 
-materiais = list (LISTA_MATERIAIS)
+materiais = list(LISTA_MATERIAIS.key())
 
 st.title("Seja Bem-Vindo ao Cálculo de Nota do Semestre")
 st.header("Coloque sua média nas respectivas caixas de texto")
