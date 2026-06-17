@@ -1,8 +1,9 @@
 import streamlit as st
 
+#Configuração da pagina
 st.set_page_config(
     page_title = "Sistema IFAP",
-    layout = "centered",
+    layout = "centered", # Forma que o layout sera organizado
     initial_sidebar_state = "expanded"
 )
 
@@ -39,9 +40,10 @@ st.markdown(
         }
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True # Parametro para injetar códigos CSS
 )
 
+# Variavel st.session_state.pagina para indicar qual pagina o navegador deve está
 if "pagina" not in st.session_state:
     st.session_state.pagina = "inicio"
 
@@ -49,7 +51,7 @@ if st.session_state.pagina == "inicio":
     st.title("🟢 Sistema Acadêmico IFAP")
     st.caption("Painel do Estudante — Instituto Federal do Amapá")
     
-    # --- CONTEÚDO EXTRA 1: Barra Lateral ---
+    # Conteudo da barra lateral
     with st.sidebar:
         st.header("📋 Menu & Atalhos")
         st.write("Acesse os portais institucionais rapidamente:")
@@ -60,7 +62,7 @@ if st.session_state.pagina == "inicio":
         st.success("Conexão Segura")
         st.info("Período Letivo Corrente")
 
-    # --- CONTEÚDO EXTRA 2: Indicadores Visuais e Barras de Progresso ---
+    # Barra de progressão e indicadores visuais
     st.subheader("‼️ Visão Geral do Semestre")
     
     col1, col2 = st.columns(2)
@@ -76,7 +78,7 @@ if st.session_state.pagina == "inicio":
     st.subheader("⚡ Ferramentas Disponíveis")
     st.write("Selecione uma das opções abaixo para iniciar os cálculos:")
 
-    # --- BLOCO DOS BOTÕES ORIGINAIS CORRIGIDO ---
+    # Botões para selecionas as páginas
     # Colocando os botões de forma sequencial limpa para evitar problemas de sintaxe
     if st.button("Calculadora da Nota 📊", type = "primary"):
         st.session_state.pagina = "nota"
@@ -88,10 +90,11 @@ if st.session_state.pagina == "inicio":
         
     st.divider()
     
-    # --- CONTEÚDO EXTRA 3: Área de Avisos ---
+    # Area de aviso
     st.subheader("📢 Avisos Importantes")
     st.warning("Atenção: O cálculo de IRA considera todas as disciplinas cursadas, inclusive dependências e reprovações.")
 
+# utf-8 é um dicionario universal para possibilitar o uso de acentos e emojis
 elif st.session_state.pagina == "nota":
     with open("app_nota.py", encoding = "utf-8") as f:
         exec(f.read())
