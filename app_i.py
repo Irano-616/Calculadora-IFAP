@@ -6,17 +6,20 @@ st.set_page_config(
     initial_sidebar_state = "collapsed"
 )
 
-# Injeção de CSS para aumentar os botões e adicionar o efeito hover
+# Injeção de CSS genérico para injetar o efeito em qualquer botão da tela
 st.markdown(
     """
     <style>
-        div.stButton > button[data-testid="baseButton-primary"] {
+        /* Aplica as alterações de tamanho em todos os botões do app */
+        .stButton > button {
             width: 100% !important;
             height: 55px !important;
             font-size: 18px !important;
-            transition: transform 0.2s ease !important;
+            transition: transform 0.2s ease-in-out !important;
         }
-        div.stButton > button[data-testid="baseButton-primary"]:hover {
+        
+        /* Aplica o efeito de crescimento (zoom sutil) ao passar o mouse */
+        .stButton > button:hover {
             transform: scale(1.04) !important;
         }
     </style>
@@ -45,3 +48,4 @@ elif st.session_state.pagina == "nota":
 elif st.session_state.pagina == "ira":
     with open("app_IRA.py", encoding = "utf-8") as f:
         exec(f.read())
+
