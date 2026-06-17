@@ -32,7 +32,7 @@ c1.write("**Matérias**")
 c2.write("**Nota (0 a 10)**")
 c3.write("**Carga Horária (Horas)**")
 
-# 1. ETAPA: Descobrir o que já foi selecionado para poder filtrar
+# A primeira etapa do filtro para impedir o usuario de selecionar matérias repetidas
 materias_selecionadas_anteriormente = []
 for j in range(6):
     if f"m_{j}" in st.session_state:
@@ -40,7 +40,7 @@ for j in range(6):
         if escolha not in ["Selecionar...", "Outra"]:
             materias_selecionadas_anteriormente.append(escolha)
 
-# 2. ETAPA: Renderizar as linhas com as opções filtradas
+# A segunda etapa onde renderiza o sistema sem as matérias previamente selecionadas
 for i in range(6):
     col_nome, col_nota, col_cred = st.columns([2, 1, 1])
     
@@ -57,7 +57,7 @@ for i in range(6):
     else:
         index_padrao = opcoes_disponiveis.index(materia_atual_desta_linha)
 
-    # 1. Caixa de seleção da matéria (Chama a função de atualizar ao mudar)
+    # Caixa de seleção da matéria (Chama a função de atualizar ao mudar)
     with col_nome:
         materia_selecionada = st.selectbox(
             "", 
@@ -69,7 +69,7 @@ for i in range(6):
             args=(i,)
         )
     
-    # 2. Campo de nota
+    # Campo de nota
     with col_nota:
         nota = st.number_input(
             "", 
@@ -81,7 +81,7 @@ for i in range(6):
             label_visibility="collapsed"
         )
     
-    # 3. Campo de carga horária corrigido com persistência de estado
+    # Campo de carga horária corrigido com persistência de estado
     with col_cred:
         if materia_selecionada == "Outra":
             # Se for "Outra", o usuário digita livremente
@@ -111,7 +111,7 @@ for i in range(6):
     soma_horas += hor
 
 # Exibe o resultado final
-if soma_horas > 0:
+if soma_horas > 0: # if para impedir que o programa exploda tentando fazer uma divisão por 0
     ira = soma_pontos / soma_horas
     st.write(f"### Seu IRA: {ira:.2f}")
 else:
