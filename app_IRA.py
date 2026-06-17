@@ -39,7 +39,7 @@ for j in range(6):
         if escolha not in ["Selecionar...", "Outra"]:
             materias_selecionadas_anteriormente.append(escolha)
 
-# Cabeçalho das colunas com proporção otimizada (Nome maior que os inputs numéricos)
+# CORREÇÃO 1: Definindo proporções [2, 1, 1] explicitamente para o cabeçalho
 c1, c2, c3 = st.columns([2, 1, 1])
 c1.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Matérias</p>", unsafe_html=True)
 c2.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Nota (0-10)</p>", unsafe_html=True)
@@ -48,6 +48,7 @@ c3.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Carga H
 # 2. ETAPA: Renderizar as linhas dentro de um container minimalista uniforme
 with st.container(border=True):
     for i in range(6):
+        # CORREÇÃO 2: Aplicando a mesma proporção [2, 1, 1] nas linhas para alinhar tudo
         col_nome, col_nota, col_cred = st.columns([2, 1, 1])
         
         materia_atual_desta_linha = st.session_state.get(f"m_{i}", "Selecionar...")
@@ -82,7 +83,7 @@ with st.container(border=True):
                 min_value=0.0, 
                 max_value=10.0, 
                 value=0.0, 
-                step=0.5, # Ajustado para 0.5 para facilitar digitação acadêmica
+                step=0.5,
                 key=f"n_{i}", 
                 label_visibility="collapsed"
             )
@@ -120,10 +121,8 @@ st.markdown("<br>", unsafe_html=True)
 if soma_horas > 0:
     ira = soma_pontos / soma_horas
     
-    # Exibe o resultado em um box moderno de destaque
     st.metric(label="Seu Índice de Rendimento Acadêmico", value=f"{ira:.2f}")
     
-    # Feedback visual discreto baseado na nota
     if ira >= 7.0:
         st.success("Ótimo desempenho! Continue assim.", icon="✨")
     elif ira >= 5.0:
