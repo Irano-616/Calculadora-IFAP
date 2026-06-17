@@ -1,3 +1,6 @@
+import streamlit as st
+
+# Lista movida para baixo do import conforme solicitado
 LISTA_MATERIAS = [
     "Selecionar...",
     "Inglês Instrumental",
@@ -9,12 +12,15 @@ LISTA_MATERIAS = [
     "Outra"
 ]
 
-import streamlit as st
-
 st.title("Seja Bem-Vindo ao Cálculo de Nota do Semestre")
 st.header("Coloque sua média nas respectivas caixas de texto")
 
-# Correção do erro: Espaçador compatível com qualquer versão do Streamlit
+# Slide / Caixa de Seleção da matéria inserida entre o header e o number_input
+materia_selecionada = st.selectbox(
+    "Escolha a Disciplina desejada:",
+    options=LISTA_MATERIAS
+)
+
 st.markdown("<br>", unsafe_allow_html=True) 
 
 n1 = st.number_input("Coloque a sua nota N1: ", step=10.0, min_value=0.0, max_value=100.0) 
