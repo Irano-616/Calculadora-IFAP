@@ -1,3 +1,5 @@
+import streamlit as st
+
 LISTA_MATERIAS = [
     "Selecionar...",
     "Inglês Instrumental",
@@ -9,7 +11,7 @@ LISTA_MATERIAS = [
     "Outra"
 ]
 
-import streamlit as st
+materiais = list (LISTA_MATERIAIS)
 
 st.title("Seja Bem-Vindo ao Cálculo de Nota do Semestre")
 st.header("Coloque sua média nas respectivas caixas de texto")
