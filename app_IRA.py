@@ -39,7 +39,7 @@ for j in range(6):
         if escolha not in ["Selecionar...", "Outra"]:
             materias_selecionadas_anteriormente.append(escolha)
 
-# CORREÇÃO 1: Definindo proporções [2, 1, 1] explicitamente para o cabeçalho
+# CORREÇÃO DEFINITIVA: Passando os pesos das colunas explicitamente [2, 1, 1]
 c1, c2, c3 = st.columns([2, 1, 1])
 c1.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Matérias</p>", unsafe_html=True)
 c2.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Nota (0-10)</p>", unsafe_html=True)
@@ -48,7 +48,7 @@ c3.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Carga H
 # 2. ETAPA: Renderizar as linhas dentro de um container minimalista uniforme
 with st.container(border=True):
     for i in range(6):
-        # CORREÇÃO 2: Aplicando a mesma proporção [2, 1, 1] nas linhas para alinhar tudo
+        # CORREÇÃO DEFINITIVA: Passando os pesos das colunas nas linhas também
         col_nome, col_nota, col_cred = st.columns([2, 1, 1])
         
         materia_atual_desta_linha = st.session_state.get(f"m_{i}", "Selecionar...")
