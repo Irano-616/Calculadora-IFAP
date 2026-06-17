@@ -16,10 +16,17 @@ DICIONARIO_MATERIAS = {
 
 LISTA_MATERIAS = list(DICIONARIO_MATERIAS.keys())
 
+# Função callback para atualizar a carga horária assim que a matéria muda
+def atualizar_carga_horaria(indice):
+    materia = st.session_state[f"m_{indice}"]
+    # Se não for "Outra", força o valor correto no st.number_input correspondente
+    if materia != "Outra":
+        st.session_state[f"c_{indice}"] = DICIONARIO_MATERIAS.get(materia, 0)
+
 soma_pontos = 0.0
 soma_horas = 0
 
-# CORREÇÃO 1: Adicionado [2, 1, 1] para definir a proporção do cabeçalho
+# Cabeçalho das colunas com proporção correta
 c1, c2, c3 = st.columns([2, 1, 1])
 c1.write("**Matérias**")
 c2.write("**Nota (0 a 10)**")
@@ -35,7 +42,6 @@ for j in range(6):
 
 # 2. ETAPA: Renderizar as linhas com as opções filtradas
 for i in range(6):
-    # CORREÇÃO 2: Adicionado [2, 1, 1] para manter o alinhamento perfeito com o cabeçalho
     col_nome, col_nota, col_cred = st.columns([2, 1, 1])
     
     materia_atual_desta_linha = st.session_state.get(f"m_{i}", "Selecionar...")
@@ -51,17 +57,19 @@ for i in range(6):
     else:
         index_padrao = opcoes_disponiveis.index(materia_atual_desta_linha)
 
+    # 1. Caixa de seleção da matéria (Chama a função de atualizar ao mudar)
     with col_nome:
         materia_selecionada = st.selectbox(
             "", 
             opcoes_disponiveis, 
             index=index_padrao,
             key=f"m_{i}", 
-            label_visibility="collapsed"
+            label_visibility="collapsed",
+            on_change=atualizar_carga_horaria,
+            args=(i,)
         )
     
-    hor_fixo = DICIONARIO_MATERIAS.get(materia_selecionada, 0)
-    
+    # 2. Campo de nota
     with col_nota:
         nota = st.number_input(
             "", 
@@ -73,18 +81,22 @@ for i in range(6):
             label_visibility="collapsed"
         )
     
+    # 3. Campo de carga horária corrigido com persistência de estado
     with col_cred:
         if materia_selecionada == "Outra":
+            # Se for "Outra", o usuário digita livremente
             hor = st.number_input(
                 "", 
                 min_value=0, 
                 max_value=200, 
-                value=0, 
+                value=st.session_state.get(f"c_{i}", 0) if st.session_state.get(f"m_{i}") == "Outra" else 0, 
                 step=20, 
                 key=f"c_{i}", 
                 label_visibility="collapsed"
             )
         else:
+            # Se for matéria fixa, puxamos o valor do dicionário de forma segura
+            hor_fixo = DICIONARIO_MATERIAS.get(materia_selecionada, 0)
             hor = st.number_input(
                 "", 
                 min_value=0, 
@@ -98,6 +110,7 @@ for i in range(6):
     soma_pontos += nota * hor
     soma_horas += hor
 
+# Exibe o resultado final
 if soma_horas > 0:
     ira = soma_pontos / soma_horas
     st.write(f"### Seu IRA: {ira:.2f}")
