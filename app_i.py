@@ -61,7 +61,7 @@ if st.session_state.pagina == "inicio":
         st.info("Período Letivo Corrente")
 
     # --- CONTEÚDO EXTRA 2: Indicadores Visuais e Barras de Progresso ---
-    st.subheader("📊 Visão Geral do Semestre")
+    st.subheader("❗❗ Visão Geral do Semestre")
     
     col1, col2 = st.columns(2)
     with col1:
@@ -82,7 +82,7 @@ if st.session_state.pagina == "inicio":
         st.session_state.pagina = "nota"
         st.rerun()
 
-    elif st.button("Calculadora de IRA", type = "primary"):
+    elif st.button("Calculadora de IRA 🎓", type = "primary"):
         st.session_state.pagina = "ira"
         st.rerun()
         
