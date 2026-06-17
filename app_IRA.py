@@ -1,7 +1,7 @@
 import streamlit as st
 
-# Configuração da página para um visual mais limpo e focado
-st.set_page_config(page_title="Calculadora de IRA - IFAP", page_icon="📊", layout="centered")
+# O st.set_page_config foi removido daqui. 
+# IMPORTANTE: Se quiser configurar título/ícone da aba, coloque st.set_page_config no topo do seu arquivo principal (ex: main.py / app.py), nunca no sub-arquivo.
 
 # Título moderno com subtítulo discreto e ícone
 st.title("📊 Calculadora de IRA")
@@ -39,7 +39,7 @@ for j in range(6):
         if escolha not in ["Selecionar...", "Outra"]:
             materias_selecionadas_anteriormente.append(escolha)
 
-# CORREÇÃO DEFINITIVA: Passando os pesos das colunas explicitamente [2, 1, 1]
+# Definição das proporções exatas das colunas [2, 1, 1] para o cabeçalho
 c1, c2, c3 = st.columns([2, 1, 1])
 c1.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Matérias</p>", unsafe_html=True)
 c2.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Nota (0-10)</p>", unsafe_html=True)
@@ -48,7 +48,7 @@ c3.markdown("<p style='font-weight:600; margin-bottom:-5px; color:#555;'>Carga H
 # 2. ETAPA: Renderizar as linhas dentro de um container minimalista uniforme
 with st.container(border=True):
     for i in range(6):
-        # CORREÇÃO DEFINITIVA: Passando os pesos das colunas nas linhas também
+        # Aplicando a mesma proporção exata [2, 1, 1] nas linhas do formulário
         col_nome, col_nota, col_cred = st.columns([2, 1, 1])
         
         materia_atual_desta_linha = st.session_state.get(f"m_{i}", "Selecionar...")
