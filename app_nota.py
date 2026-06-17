@@ -1,5 +1,3 @@
-import streamlit as st
-
 LISTA_MATERIAS = [
     "Selecionar...",
     "Inglês Instrumental",
@@ -11,13 +9,13 @@ LISTA_MATERIAS = [
     "Outra"
 ]
 
-materiais = list(LISTA_MATERIAIS.key())
+import streamlit as st
 
 st.title("Seja Bem-Vindo ao Cálculo de Nota do Semestre")
 st.header("Coloque sua média nas respectivas caixas de texto")
 
-# Espaçamento vertical oficial do Streamlit para separar o header dos inputs
-st.space("medium") 
+# Correção do erro: Espaçador compatível com qualquer versão do Streamlit
+st.markdown("<br>", unsafe_allow_html=True) 
 
 n1 = st.number_input("Coloque a sua nota N1: ", step=10.0, min_value=0.0, max_value=100.0) 
 n2 = st.number_input("Coloque a sua nota N2: ", step=10.0, min_value=0.0, max_value=100.0)
@@ -40,3 +38,4 @@ st.divider()
 if st.button("❌ Voltar ao Menu", use_container_width=True):
     st.session_state.pagina = "inicio"
     st.rerun()
+
