@@ -67,7 +67,7 @@ if st.session_state.pagina == "inicio":
     
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown('<div class="metric-card"><strong>Média para Aprovação:</strong><br>🎯 6.0 pontos</div>', unsafe_allow_html=True)
+        st.markdown('<div class="metric-card"><strong>Média para Aprovação:</strong><br>🎯 7.0 pontos</div>', unsafe_allow_html=True)
     with col2:
         st.markdown('<div class="metric-card"><strong>Frequência Mínima:</strong><br>📅 75% exigido</div>', unsafe_allow_html=True)
 
